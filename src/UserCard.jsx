@@ -1,15 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const UserCard = (props) => {
+const UserCard = ({ data }) => {
     return (
-        <div className="userCard">
-        <div>
-        <h2>{props.name}</h2>
-        <small><em>@{props.username}</em></small>
-        <a href="#">{props.website}</a>
+        <>
+        {data.map((user, index) => (
+            <div key={index} className="userCard"> 
+            <div>
+                <p>{user.name.slice(0,1)}</p>
+            </div>
+                <div>
+                    <h2>{user.name}</h2>
+                    <small><em>@{user.username}</em></small>
+                    <a href="http://google.com">http://{user.website}</a>
+                </div>
+            <Link to={`/users/${user.username}`}>MORE DETAILS</Link>
         </div>
-        <button>MORE DETAILS</button>
-        </div>
+        ))}
+        </>
     )
 }
 
