@@ -22,11 +22,9 @@ const App = () => {
   return (
     <Router>
       <Route exact path="/">
-        <div className="App">
           <div className="main">
             <UserCard data={users} />
           </div>
-        </div>
       </Route>
       <Route path="/users/:username">
         <UserProfile data={users} />
