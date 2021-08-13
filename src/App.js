@@ -1,29 +1,36 @@
-import React, { Component } from "react"
-import logo from "./logo.svg"
-import "./App.css"
+import React, { useState } from "react";
+import UserCard from "./UserCard.jsx";
+import "./App.css";
 
 const App = () => {
 
-  const getInfo = async () => {
+  const [users, setUsers] = useState([]);
+
+  const getUserInfo = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response.json();
 
     console.log(data);
+    setUsers(data);
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
+  getUserInfo();
+
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+      <div className="main">
+        {users.map((user, idx) => (
+          <UserCard 
+          key={idx}
+          name={user.name}
+          username={user.username}
+          website={user.website}
+          />
+        ))}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default App
